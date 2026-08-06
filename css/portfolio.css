@@ -457,7 +457,7 @@ nav a:hover {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 2rem;
   padding: 12px 24px 24px;
   margin: 0;
@@ -470,6 +470,12 @@ nav a:hover {
   flex: 1;
   min-width: 280px;
   max-width: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline .timeline-track li div {
+  flex: 1;
 }
 
 .timeline .timeline-track li::after {
@@ -537,7 +543,10 @@ nav a:hover {
     0 14px 36px rgba(0, 0, 0, 0.85),
     0 0 22px rgba(120, 255, 214, 0.18);
   overflow: hidden;
-  min-height: 200px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .timeline .timeline-item::after {
@@ -624,7 +633,7 @@ nav a:hover {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1.4rem;
+  margin-top: 2rem;
 }
 
 /* Expanded: hide summary, show full details */
