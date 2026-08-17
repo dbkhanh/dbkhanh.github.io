@@ -584,15 +584,17 @@
             // define variables
             var items = document.querySelectorAll(".timeline li");
 
-            // check if an element is in viewport
-            // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+            // Reveal a card as soon as it enters the viewport. Requiring the
+            // entire card to fit in the window kept taller cards hidden.
             function isElementInViewport(el) {
             var rect = el.getBoundingClientRect();
+            var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
             return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                rect.bottom > 0 &&
+                rect.right > 0 &&
+                rect.top < viewportHeight &&
+                rect.left < viewportWidth
             );
             }
 
@@ -608,6 +610,11 @@
             window.addEventListener("load", callbackFunc);
             window.addEventListener("resize", callbackFunc);
             window.addEventListener("scroll", callbackFunc);
+            // Content must be available immediately on first load; scroll
+            // events can still update the timeline styling afterwards.
+            for (var j = 0; j < items.length; j++) {
+                items[j].classList.add("in-view");
+            }
 
             })();
     </script>
