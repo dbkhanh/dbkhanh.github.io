@@ -685,7 +685,8 @@
                 if (!smallBreakpoint.matches) return;
                 var i;
                 for (i = 0; i < lis.length; i++) lis[i].classList.add("in-view");
-                scrollEl.scrollLeft = scrollEl.scrollWidth - scrollEl.clientWidth;
+                // Start the mobile timeline on the newest (rightmost) role.
+                scrollToCard(lis.length - 1);
                 timeline.classList.add("timeline-shake");
                 setTimeout(function() {
                     timeline.classList.remove("timeline-shake");
@@ -732,11 +733,12 @@
 
             scrollEl.addEventListener("scroll", updateArrows);
             window.addEventListener("load", initSmall);
+            requestAnimationFrame(initSmall);
             smallBreakpoint.addListener(function() {
                 if (smallBreakpoint.matches) {
                     var i;
                     for (i = 0; i < lis.length; i++) lis[i].classList.add("in-view");
-                    scrollEl.scrollLeft = scrollEl.scrollWidth - scrollEl.clientWidth;
+                    scrollToCard(lis.length - 1);
                     timeline.classList.add("timeline-straight");
                     updateArrows();
                 } else {

@@ -513,10 +513,10 @@ nav a:hover {
   z-index: 2;
 }
 
-/* Hidden: pop-up from below */
+/* Visible by default so Experience is never empty while scripts load. */
 .timeline .timeline-track li div {
-  opacity: 0;
-  transform: translateY(28px) scale(0.96);
+  opacity: 1;
+  transform: rotate(var(--timeline-tilt, 0deg)) translateY(0) scale(1);
   transition: opacity 0.5s ease-out, transform 0.15s ease-out;
   position: relative;
   width: 100%;
